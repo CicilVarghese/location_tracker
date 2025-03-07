@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e2a44, #0f172a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .card.bg-dark-glass {
+            background: rgba(20, 30, 50, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-outline {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 10px 12px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #3b82f6;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+            color: white;
+        }
+
+        label {
+            color: #a0aec0;
+            font-size: 0.8rem;
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            background: rgba(20, 30, 50, 0.9);
+            padding: 0 4px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .form-control:focus + label,
+        .form-control:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.7rem;
+            color: #60a5fa;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .text-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .text-section h2 {
+            font-size: 1.2rem;
+            color: #60a5fa;
+            font-weight: 400;
+        }
+
+        .text-section p {
+            font-size: 1rem;
+            color: #d1d5db;
+            line-height: 1.5;
+            max-width: 100%;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        /* Navigation link style matching login page */
+        .nav-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 1rem;
+            display: block;
+            text-align: center;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #a0aec0;
+            text-decoration: underline;
+        }
+
+        /* Feedback styling for email and password */
+        .feedback, .password-feedback {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .success {
+            color: #4CAF50; /* Green for success */
+        }
+
+        .error {
+            color: #F44336; /* Red for error */
+        }
+
+        .password-match {
+            color: #4CAF50; /* Green for match with icon */
+            font-weight: bold;
+        }
+
+        .password-mismatch {
+            color: #F44336; /* Red for mismatch with icon */
+            font-weight: bold;
+        }
+
+        /* Media queries (same as login page for consistency) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                box-shadow: none;
+            }
+
+            .row {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-section {
+                margin-bottom: 2rem;
+            }
+
+            .text-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .text-section h2 {
+                font-size: 1rem;
+            }
+
+            .text-section p {
+                font-size: 0.9rem;
+            }
+
+            .card-body {
+                padding: 1.5rem;
+            }
+
+            .form-control {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+
+            .btn-primary {
+                font-size: 0.9rem;
+                padding: 8px 0;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+            }
+
+            .feedback, .password-feedback {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .text-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .text-section h2 {
+                font-size: 0.9rem;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+
+            .container {
+                border-radius: 0;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+
+            .feedback, .password-feedback {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container px-4 py-5">
+        <div class="row align-items-center">
+            <!-- Left Text Section -->
+            <div class="col-lg-6 text-white text-section">
+                <h1>Join Us<br><h2><span>Create your account</span></h2></h1>
+                <p>
+                    Sign up to begin using the Real-Time Location Tracker and enjoy seamless tracking and updates.
+                </p>
+            </div>
+
+            <!-- Right Signup Section -->
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="card bg-dark-glass shadow-lg">
+                    <div class="card-body">
+                        <form action="/signup" method="POST" id="signupForm">
+                            <!-- Email -->
+                            <div class="form-outline mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                                <span class="feedback"></span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-outline mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-outline mb-4">
+                                <label for="confirm-password" class="form-label">Confirm Password</label>
+                                <input type="password" id="confirm-password" name="confirm-password" class="form-control" required>
+                                <span class="password-feedback"></span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary w-100 btn-lg mb-4">
+                                Sign Up
+                            </button>
+
+                            <!-- Sign In Link (matching login page style) -->
+                            <a href="/login" class="nav-link">Already have an account? Sign In</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const emailFeedback = document.querySelector('.feedback');
+            const passwordFeedback = document.querySelector('.password-feedback');
+            const signupForm = document.getElementById('signupForm');
+
+            // Function to check if email exists (client-side, real-time)
+            async function checkEmail(email) {
+                if (!email) return;
+
+                try {
+                    const response = await fetch('/check-email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email: email })
+                    });
+
+                    const data = await response.json();
+                    if (data.exists) {
+                        emailFeedback.textContent = 'This email is already registered.';
+                        emailFeedback.className = 'feedback error';
+                        return true;
+                    } else {
+                        emailFeedback.textContent = 'Email available.';
+                        emailFeedback.className = 'feedback success';
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('Error checking email:', error);
+                    emailFeedback.textContent = 'Error checking email. Please try again.';
+                    emailFeedback.className = 'feedback error';
+                    return true;
+                }
+            }
+
+            // Real-time email validation (debounced to reduce requests)
+            emailInput.addEventListener('input', debounce(async () => {
+                await checkEmail(emailInput.value);
+            }, 500));
+
+            // Password matching validation with enhanced feedback
+            function checkPasswords() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (password === confirmPassword && password.length > 0) {
+                    passwordFeedback.innerHTML = '<i class="fas fa-check-circle"></i> Passwords match!';
+                    passwordFeedback.className = 'password-feedback password-match';
+                } else if (confirmPassword.length > 0) {
+                    passwordFeedback.innerHTML = '<i class="fas fa-times-circle"></i> Passwords do not match!';
+                    passwordFeedback.className = 'password-feedback password-mismatch';
+                } else {
+                    passwordFeedback.textContent = '';
+                    passwordFeedback.className = 'password-feedback';
+                }
+            }
+
+            passwordInput.addEventListener('input', checkPasswords);
+            confirmPasswordInput.addEventListener('input', checkPasswords);
+
+            // Prevent form submission if email exists or passwords don’t match
+            signupForm.addEventListener('submit', async (e) => {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                // Check email duplication
+                const emailExists = await checkEmail(email);
+                if (emailExists) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Check password match
+                if (password !== confirmPassword || password.length === 0) {
+                    e.preventDefault();
+                    passwordFeedback.innerHTML = '<i class="fas fa-times-circle"></i> Passwords do not match! Please try again.';
+                    passwordFeedback.className = 'password-feedback password-mismatch';
+                    return false;
+                }
+
+                // If all checks pass, allow submission
+                return true;
+            });
+
+            // Debounce function to limit API calls
+            function debounce(func, delay) {
+                let timeoutId;
+                return (...args) => {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(() => func(...args), delay);
+                };
+            }
+        });
+    </script>
+</body>
+</html>
