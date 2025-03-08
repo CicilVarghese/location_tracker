@@ -1,3 +1,4 @@
+    require('dotenv').config();     
     const express = require('express');
     const path = require('path');
     const app = express();
@@ -13,7 +14,7 @@
     const port = 3000;
 
     // MongoDB connection
-    mongoose.connect('mongodb://localhost:27017/purewebrtc').then(() => console.log('Connected to MongoDB'))
+    mongoose.connect(process.env.MONGODB_URI).then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Database connection error:', err));
 
     app.use(express.json());
@@ -167,6 +168,6 @@
     });
     });
 
-    http.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-    });
+    http.listen(process.env.PORT || 3000, () => {
+        console.log(`Server running on http://localhost:${process.env.PORT || 3000}`);
+      });
